@@ -1,0 +1,84 @@
+{% extends 'base.html'%}
+{% block content%}
+        <!-- START: Main Content-->
+        <main>
+            <div class="container-fluid site-width">
+                <!-- START: Breadcrumbs-->
+                <div class="row ">
+                    <div class="col-12  align-self-center">
+                        <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
+                            <div class="w-sm-100 mr-auto"><h4 class="mb-0">Datatable</h4></div>
+
+                            <ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
+                                <li class="breadcrumb-item">Home</li>
+                                <li class="breadcrumb-item">Table</li>
+                                <li class="breadcrumb-item active"><a href="#">Datatable</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- END: Breadcrumbs-->
+
+                <!-- START: Card Data-->
+                <div class="row">
+                    <div class="col-12 mt-3">
+                        <div class="card">
+                            <div class="card-header  justify-content-between align-items-center">                               
+                                <h4 class="card-title">Vehicle Table</h4> 
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example" class="display table dataTable table-striped table-bordered" >
+                                        <thead>
+                                            <tr>
+                                                <th>Owner</th>
+                                                <th>Vehicle Type</th>
+                                                <th>Vehicle Registration</th>
+                                                <th>Time In</th>
+                                                <th>Time Out</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Tiger Nixon</td>
+                                                <td>Volkswagen GTI</td>
+                                                <td>KDC 225</td>
+                                                <td>08:10AM</td>
+                                                <td>04:25PM</td>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <td>Garrett Winters</td>
+                                                <td>BMW X1</td>
+                                                <td>KDD 275</td>
+                                                <td>08:50AM</td>
+                                                <td>04:55PM</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Ashton Cox</td>
+                                                <td>Nissan Note</td>
+                                                <td>KCC 225</td>
+                                                <td>09:10AM</td>
+                                                <td>04:25PM</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Owner</th>
+                                                <th>Vehicle Type</th>
+                                                <th>Vehicle Registration</th>
+                                                <th>Time In</th>
+                                                <th>Time Out</th>
+                                            </tr>
+                                            
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div> 
+
+                    </div>                  
+                </div>
+                <!-- END: Card DATA-->
+            </div>
+        </main>
+        <!-- END: Content-->
+{%endblock%}

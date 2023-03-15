@@ -1,0 +1,85 @@
+{% extends 'base.html'%}
+{% block content%}
+        <!-- START: Main Content-->
+        <main>
+            <div class="container-fluid site-width">
+                <!-- START: Breadcrumbs-->
+                <div class="row ">
+                    <div class="col-12  align-self-center">
+                        <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
+                            <div class="w-sm-100 mr-auto"><h4 class="mb-0">Visitors</h4></div>
+
+                            <ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
+                                <li class="breadcrumb-item">Home</li>
+                                <li class="breadcrumb-item">Building</li>
+                                <li class="breadcrumb-item active"><a>Visitors</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- END: Breadcrumbs-->
+
+                <!-- START: Card Data-->
+                <div class="row">
+                    <div class="col-12 mt-3">
+                        <div class="card">
+                            <div class="card-header  justify-content-between align-items-center">                               
+                                <h4 class="card-title">Building Visitors</h4> 
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example" class="display table dataTable table-striped table-bordered" >
+                                        <thead>
+                                            <tr>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Telephone Number</th>
+                                                <th>National ID</th>
+                                                <th>Time</th>
+                                                <th>Company</th>
+                                                <th>Reason for Visit</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Steve</td>
+                                                <td>Rodgers</td>
+                                                <td>+254 74832 7893</td>
+                                                <td>34020368</td>
+                                                <td>02/05/2022, 12:45 PM</td>
+                                                <td>Stark Industries</td>
+                                                <td>A formal meeting with Iron-Man</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Natasha</td>
+                                                <td>Romanova</td>
+                                                <td>+254 70932 7433</td>
+                                                <td>36550308</td>
+                                                <td>02/06/2022, 10:00 AM</td>
+                                                <td>Avengers HQ</td>
+                                                <td>An interview with Nick Fury</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Telephone Number</th>
+                                                <th>National ID</th>
+                                                <th>Time</th>
+                                                <th>Company</th>
+                                                <th>Reason for Visit</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div> 
+
+                    </div>                  
+                </div>
+                <!-- END: Card DATA-->
+            </div>
+        </main>
+        <!-- END: Content-->
+{%endblock%}

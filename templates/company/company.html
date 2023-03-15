@@ -1,0 +1,84 @@
+{% extends 'base.html'%}
+{% block content%}
+        <!-- START: Main Content-->
+        <main>
+            <div class="container-fluid site-width">
+                <!-- START: Breadcrumbs-->
+                <div class="row ">
+                    <div class="col-12  align-self-center">
+                        <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
+                            <div class="w-sm-100 mr-auto"><h4 class="mb-0">Companies</h4></div>
+
+                            <ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
+                                <li class="breadcrumb-item">Home</li>
+                                <li class="breadcrumb-item">Building</li>
+                                <li class="breadcrumb-item active"><a>Companies</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- END: Breadcrumbs-->
+
+                <!-- START: Card Data-->
+                <div class="row">
+                    <div class="col-12 mt-3">
+                        <div class="card">
+                            <div class="card-header  justify-content-between align-items-center">                               
+                                <h4 class="card-title">Companies in the building</h4> 
+                            </div>
+                            <div class="card-header  justify-content-between align-items-center left">                               
+                                <button class="btn btn-primary rounded-btn mb-2 " style="float:right;"><a href="{%url 'add-company'%}" class="white-links"><i class="fas fa-plus-circle"></i> Add Company</a></button> 
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example" class="display table dataTable table-striped table-bordered" >
+                                        <thead>
+                                            <tr>
+                                                <th>Company Name</th>
+                                                <th>Email</th>
+                                                <th>Telephone Number</th>
+                                                <th>Owner</th>
+                                                <th>Office Floor</th>
+                                                <th>Date Joined</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Avengers HQ</td>
+                                                <td>avengers@yahoo.com</td>
+                                                <td>+254 72038 2789</td>
+                                                <td>Nick Fury</td>
+                                                <td>6</td>
+                                                <td>03/03/2023</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Stark Industries</td>
+                                                <td>starkindustries@gmail.com</td>
+                                                <td>+254 79833 0921</td>
+                                                <td>Tony Stark</td>
+                                                <td>3</td>
+                                                <td>25/02/2020</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Company Name</th>
+                                                <th>Email</th>
+                                                <th>Telephone Number</th>
+                                                <th>Owner</th>
+                                                <th>Office Floor</th>
+                                                <th>Date Joined</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div> 
+
+                    </div>                  
+                </div>
+                <!-- END: Card DATA-->
+            </div>
+        </main>
+        <!-- END: Content-->
+{%endblock%}
