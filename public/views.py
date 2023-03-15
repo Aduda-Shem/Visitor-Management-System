@@ -134,5 +134,3 @@ class TenantSetupView(View):
                 return HttpResponseRedirect(redirect)
         return render(request, "users/building-register.html", {"form": form})
 
-
-

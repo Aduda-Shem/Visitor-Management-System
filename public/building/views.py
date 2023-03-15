@@ -31,3 +31,5 @@ def addcompany(request):
 class PasswordChange(TemplateView):
     template_name = "users/change-password.html"
 
+def index(request):
+    return render(request, template_name="building/index.html")

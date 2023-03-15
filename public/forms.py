@@ -24,11 +24,7 @@ class RegistrationForm(forms.ModelForm):
 
     password = forms.CharField(widget=forms.PasswordInput, max_length=MAX_PASSWORD_LENGTH)
 
-    def clean_email(self):
-        email = self.cleaned_data['email']
-        if TenantUser.objects.filter(email__iexact=email).exists():
-            raise forms.ValidationError("This email is already taken")
-        return 
+
     class Meta:
         model = TenantUser
         fields = ['email', 'full_name', 'phone_number', 'password']

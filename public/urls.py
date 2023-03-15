@@ -1,5 +1,8 @@
-from django.urls import path
-from django.views.generic import TemplateView
+from django import views
+from django.urls import include, path
+from django.views.generic import TemplateView 
+from . import views
+
 
 from public.views import SignupView, TenantSetupView
 from public.building import views
@@ -16,5 +19,6 @@ urlpatterns = [
     path('security', views.Security.as_view(), name='security'),
     path('companies', views.Company.as_view(), name='company'),
     path('changepassword', views.PasswordChange.as_view(), name='pass_change'),
+    path('index', views.index, name='index'),
     
 ]
