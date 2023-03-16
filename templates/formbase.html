@@ -1,0 +1,41 @@
+{% load static %}
+{%load crispy_forms_tags %}
+
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Netbot - VMS</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="author" content="colorlib.com">
+
+		<!-- MATERIAL DESIGN ICONIC FONT -->
+		<link rel="stylesheet" href="{%static 'wizard/fonts/material-design-iconic-font/css/material-design-iconic-font.css'%}">
+
+		<!-- STYLE CSS -->
+        <link rel="stylesheet" href="{%static 'wizard/css/main.css'%}">
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="image-holder">
+                <div class="col-12">
+                    {%block content%}
+                    {%endblock%}
+                </div>
+
+				<img src="{%static 'wizard/images/form-wizard.png'%}" alt="">
+			</div>
+       
+
+		<script src="{%static 'wizard/js/jquery-3.3.1.min.js'%}"></script>
+		
+		<!-- JQUERY STEP -->
+		<script src="{%static 'wizard/js/jquery.steps.js'%}"></script>
+
+		<script src="{%static 'wizard/js/main.js'%}"></script>
+<!-- Template created and distributed by Colorlib -->
+</body>
+</html>

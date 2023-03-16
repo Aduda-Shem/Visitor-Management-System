@@ -6,6 +6,7 @@ from django.db import connection
 from django.contrib.postgres.search import SearchVector
 from tenant_schemas.utils import tenant_context, schema_context
 from public.users.models import TenantUser
+from formtools.wizard.views import SessionWizardView
 
 from public.building.models import Building, Domain
 # from tenant_schemas.utils import tenant_context
@@ -133,6 +134,4 @@ class TenantSetupView(View):
                 # print(redirect)
                 return HttpResponseRedirect(redirect)
         return render(request, "users/building-register.html", {"form": form})
-
-
 

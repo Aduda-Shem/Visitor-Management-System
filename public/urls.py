@@ -20,5 +20,5 @@ urlpatterns = [
     path('companies', views.Company.as_view(), name='company'),
     path('changepassword', views.PasswordChange.as_view(), name='pass_change'),
     path('index', views.index, name='index'),
-    
+    path('register', views.FormWizardView.as_view(), name='FormWizardView'), 
 ]
