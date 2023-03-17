@@ -7,6 +7,7 @@ from django.db import connection
 from django.db.transaction import atomic
 from django.urls import reverse, reverse_lazy
 from django.contrib.postgres.search import SearchVector
+
 from django.conf import settings
 from django.contrib.auth import get_user_model, login
 from django.core import validators
@@ -164,6 +165,4 @@ class TenantSetupView(View):
                 # print(redirect)
                 return HttpResponseRedirect(redirect)
         return render(request, "users/building-register.html", {"form": form})
-
-
 

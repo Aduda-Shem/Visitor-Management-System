@@ -55,6 +55,7 @@ SHARED_APPS = [
     'public',
     'public.building',
     'public.users',
+    'formtools',
    
 ]
 TENANT_USERS_DOMAIN="localhost"
