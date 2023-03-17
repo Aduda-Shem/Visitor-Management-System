@@ -1,0 +1,10 @@
+{% autoescape off %}
+Hi {{ user.full_name }},
+
+Click the link below to login to your account:
+http://{{ domain }}
+
+Credentials
+Email: {{ user.email}}
+Password: {{ user.password }}
+{% endautoescape %}

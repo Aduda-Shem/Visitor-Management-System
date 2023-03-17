@@ -1,3 +1,4 @@
+from urllib import request
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from django.test import Client
@@ -19,11 +20,11 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django_tenants.utils import get_tenant_model
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 
 from tenant_schemas.utils import tenant_context, schema_context
 from tenant_users.tenants.tasks import provision_tenant
-from tenant_schemas.utils import tenant_context
+# from tenant_schemas.utils import tenant_context
 
 from formtools.wizard.views import SessionWizardView
 
@@ -183,7 +184,6 @@ class FormWizardView(SessionWizardView):
         building.website=building_form.cleaned_data['slug']
         building.physical_address=building_form.cleaned_data['physical_address']
         building.telephone=building_form.cleaned_data['telephone']
-
         building.owner=user
         building.schema_name=slug
         building.save()
@@ -200,9 +200,9 @@ class FormWizardView(SessionWizardView):
 
         email=user_form.cleaned_data['email']
         subject = 'Activate your Account'
-        message = render_to_string('email/account_activation_email.html',{
-            'user': user_form,
-            'domain': f"{domain.domain}/login",
+        message = render_to_string('email/confirm_registration.html',{
+            'user': user,
+            'domain': f"{domain.domain}:8000/login",
             'password':user.password,
             'uid': urlsafe_base64_encode(force_bytes(user.id)),
             'token': account_activation_token.make_token(user),
@@ -215,8 +215,6 @@ class FormWizardView(SessionWizardView):
         print(message)
         messages.success(self.request, ('Please confirm your email to complete the registration process'))
             
-            
-
-        return HttpResponse("Registration Email with Password Sent!!")
+        return render(self.request, "email/accounts_send_confirm.html")
     
 
