@@ -5,15 +5,17 @@
 {% block head %}
 {{ wizard.form.media }}
 
+  <!-- Favicons -->
+  <title>VMS Registration</title>
+<link href="static/images/favicon.png" rel="icon">
 <link rel="stylesheet" href="{%static 'css/main.css'%}">
 <style>
     body {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 80vh;
+        height: 90vh;
         background: url("{% static '../static/images/background.png' %}")  no-repeat center right;
-        
         background-size: 18%;
         background-position: 300px 250;
         background-color: #62919d;
@@ -21,16 +23,16 @@
     }
 
     .form-container {
-        width: 350px;
+        width: 400px;
         margin: 0;
         background-color: #f5f5f5;
-        margin-top: 50px;
+        margin-top: 30px;
         margin-left: auto;
         margin-right: 50px;
         border: 1px solid #ccc;
         border-radius: 10px;
         padding: 40px;
-        box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+        /* box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3); */
         font-family: Arial, Helvetica, sans-serif;
         float: right;
         display: flex;

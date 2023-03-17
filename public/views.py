@@ -214,8 +214,6 @@ class FormWizardView(SessionWizardView):
         )
         print(message)
         messages.success(self.request, ('Please confirm your email to complete the registration process'))
-            
-            
 
         return HttpResponse("Registration Email with Password Sent!!")
     
