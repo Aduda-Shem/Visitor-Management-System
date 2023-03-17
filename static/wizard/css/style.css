@@ -94,10 +94,10 @@ body {
         display: inline-block;
         width: 100%;
         height: 7px;
-        background: #e6e6e6;
+        background: #62919d;
         border-radius: 3.5px; }
       .steps ul li.first a, .steps ul li.checked a {
-        background: #f3d4b7;
+        background: #62919d;
         transition: all 0.5s ease; }
     .steps ul:before {
       content: "Billing Details";
@@ -145,7 +145,7 @@ h3 {
   width: 100%;
   padding: 0 18px; }
   .form-control:focus {
-    border-color: #f3d4b7; }
+    border-color: #62919d; }
   .form-control::-webkit-input-placeholder {
     color: #999;
     font-size: 13px; }
@@ -181,7 +181,7 @@ textarea.form-control {
   height: 51px;
   width: 135px;
   align-items: center;
-  background: #f3d4b7;
+  background: #62919d;
   cursor: pointer;
   position: relative;
   padding-left: 41px;
@@ -200,7 +200,7 @@ textarea.form-control {
     -webkit-transform: translateZ(0);
     transform: translateZ(0); }
   .actions li a:hover {
-    background: #d9bda3; }
+    background: #62919d; }
     .actions li a:hover:before {
       -webkit-animation-name: hvr-icon-wobble-horizontal;
       animation-name: hvr-icon-wobble-horizontal;
@@ -213,7 +213,7 @@ textarea.form-control {
 .actions li[aria-disabled="true"] a {
   display: none; }
 .actions li:first-child a {
-  background: #e6e6e6;
+  background: #62919d;
   padding-left: 48px; }
   .actions li:first-child a:before {
     content: '\f2ea';
@@ -248,7 +248,7 @@ textarea.form-control {
   height: 12px;
   width: 13px;
   border-radius: 2px;
-  background-color: #ebebeb;
+  background-color: #62919d;
   border: 1px solid #ccc;
   font-family: Material-Design-Iconic-Font;
   color: #000;

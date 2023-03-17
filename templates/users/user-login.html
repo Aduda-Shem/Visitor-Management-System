@@ -1,38 +1,32 @@
 {% load static%}
 {%load crispy_forms_tags %}
 
+
+
 <!DOCTYPE html>
 <html lang="en">
     <!-- START: Head-->
+    <link href="static/images/favicon.png" rel="icon">
+
     
-<!-- Mirrored from html.designstream.co.in/pick/html/page-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 13 Apr 2021 10:21:17 GMT -->
 <head>
         <meta charset="UTF-8">
-        <title>Pick Admin</title>
+        <title>VMS login</title>
         <link rel="shortcut icon" href="dist/images/favicon.ico" />
         <meta name="viewport" content="width=device-width,initial-scale=1"> 
 
-        <!-- START: Template CSS-->
-        <link rel="stylesheet" href="{%static  'vendors/bootstrap/css/bootstrap.min.css'%}">
-        <link rel="stylesheet" href="{%static  'vendors/jquery-ui/jquery-ui.min.css'%}">
-        <link rel="stylesheet" href="{%static 'vendors/jquery-ui/jquery-ui.theme.min.css'%}">
-        <link rel="stylesheet" href="{%static 'vendors/simple-line-icons/css/simple-line-icons.css'%}">        
-        <link rel="stylesheet" href="{%static 'vendors/flags-icon/css/flag-icon.min.css'%}"> 
+   		<!-- MATERIAL DESIGN ICONIC FONT -->
+		<link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.css">
 
-        <!-- END Template CSS-->     
-
-        <!-- START: Page CSS-->   
-        <link rel="stylesheet" href="{%static  'vendors/social-button/bootstrap-soacial.css'%}"/>   
-        <!-- END: Page CSS-->
-
-        <!-- START: Custom CSS-->
-        <link rel="stylesheet" href="{%static 'css/main.css'%}">
-        <!-- END: Custom CSS-->
-    </head>
-    <!-- END Head-->
-
-    <!-- START: Body-->
-    <body id="main-container" class="default">
+		<!-- STYLE CSS -->
+		<!-- <link rel="stylesheet" href="{%static 'wizard/css/style.css'%}"> -->
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="image-holder">
+				<img src="{%static '../static/images/background.png'%}" alt="">
+           
+			</div>
 
 <!-- START: Main Content-->
 <div class="container">
@@ -75,12 +69,12 @@
 <!-- END: Content-->
 
 
-        <!-- START: Template JS-->
-        <script src="{% static 'vendors/jquery/jquery-3.3.1.min.js'%}"></script>
-        <script src="{% static 'vendors/jquery-ui/jquery-ui.min.js'%}"></script>
-        <script src="{% static 'vendors/moment/moment.js'%}"></script>
-        <script src="{%static 'vendors/bootstrap/js/bootstrap.bundle.min.js'%}"></script>    
-        <script src="{%static 'vendors/slimscroll/jquery.slimscroll.min.js'%}"></script>
+<script src="{%static 'wizard/js/jquery-3.3.1.min.js'%}"></script>
+		
+<!-- JQUERY STEP -->
+<script src="{%static 'wizard/js/jquery.steps.js'%}"></script>
+
+<script src="{%static 'wizard/js/main.js'%}"></script>
 
         <!-- END: Template JS-->  
     </body>

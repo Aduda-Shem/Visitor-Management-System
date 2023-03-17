@@ -81,6 +81,8 @@ TENANT_MODEL = "building.Building" # app.Modelpip
 TENANT_DOMAIN_MODEL = "building.Domain"  # app.Model
 TENANT_USERS_DOMAIN = "localhost"
 
+MULTI_TENANT = True
+
 
 
 AUTH_USER_MODEL = 'users.TenantUser'
@@ -92,8 +94,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
     'tenant_users.permissions.backend.UserBackend',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 MIDDLEWARE = [
