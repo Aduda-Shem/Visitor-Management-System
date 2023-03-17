@@ -2,14 +2,15 @@ from django import views
 from django.urls import include, path
 from django.views.generic import TemplateView 
 from . import views
-
-
-from public.views import SignupView, TenantSetupView
+# from vms.company.views import add_company
+from public.views import SignupView, TenantSetupView, ActivateAccount
 from public.building import views
 
 urlpatterns = [
     path("", views.DashboardView.as_view(), name='index'),
     path("signup", SignupView.as_view(), name="signup"),
+    path('activate/<uidb64>/<token>/', ActivateAccount.as_view(), name='activate'),
+
     path("building_register", TenantSetupView.as_view(), name='building-register'),
     path('add-company', views.addcompany, name='add-company'),
     path('add-security', views.addsecurity, name='add-security'),
