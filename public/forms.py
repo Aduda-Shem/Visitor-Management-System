@@ -21,7 +21,6 @@ class RegistrationForm(forms.ModelForm):
     full_name = forms.CharField(max_length=100)
     phone_number = forms.CharField()
     national_id = forms.CharField()
-
     password = forms.CharField(widget=forms.PasswordInput, max_length=MAX_PASSWORD_LENGTH)
 
 
@@ -30,22 +29,13 @@ class RegistrationForm(forms.ModelForm):
         fields = ['email', 'full_name', 'phone_number', 'password']
 
 
-class TenantSetupForm(forms.Form):
+class TenantSetupForm(forms.ModelForm):
     name = forms.CharField(required=False)
     email = forms.EmailField(required=False)
     telephone = forms.CharField(required=False)
     nature_of_business = forms.ChoiceField(choices=BUILDING_CHOICES)
     slug = forms.CharField(required=False)
     physical_address = forms.CharField(required=False)
-
-
-
-# class BuildingForm(forms.ModelForm):
-#     name = forms.CharField(max_length=30)
-#     url = forms.URLField(max_length=30)
-#     email = forms.EmailField(max_length=100)
-#     description = forms.CharField(max_length=50, widget=forms.Textarea(),help_text='Building description!')
-            
-#     class Meta:
-#          model = Building
-#          fields = ['building_name', 'url', 'email', 'description']
+    class Meta:
+        model = Building
+        fields = ['name', 'email', 'telephone', 'nature_of_business', 'slug','physical_address' ]

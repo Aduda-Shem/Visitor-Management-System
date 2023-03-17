@@ -24,6 +24,7 @@ from django_tenants.utils import get_tenant_model
 from tenant_schemas.utils import tenant_context, schema_context
 from tenant_users.tenants.tasks import provision_tenant
 # from tenant_schemas.utils import tenant_context
+from formtools.wizard.views import SessionWizardView
 
 from django.core.mail import send_mail
 
@@ -165,4 +166,39 @@ class TenantSetupView(View):
                 # print(redirect)
                 return HttpResponseRedirect(redirect)
         return render(request, "users/building-register.html", {"form": form})
+    
+class FormWizardView(SessionWizardView):
+    template_name = "../templates/landing.html"
+    form_list = [RegistrationForm, TenantSetupForm]
+    def done(self, form_list, **kwargs):
+        print(self.request, [form.cleaned_data for form in form_list])
+        user_form=form_list[0]
+        building_form=form_list[1]
+        user=user_form.save()
+        print(user.id)
+        slug=building_form.cleaned_data['slug']
+        building_form.owner_id=user.id
+        building_form.schema_name=slug
+        b=building_form.save()
+        email=user_form.cleaned_data['email']
+        subdomain=slug
+        subject = 'Activate your Account'
+        message = render_to_string('email/account_activation_email.html',{
+            'user': user_form,
+            'domain': subdomain,
+            'uid': urlsafe_base64_encode(force_bytes(user_form.pk)),
+            'token': account_activation_token.make_token(user_form),
+        })
+
+        # user.email_user(subject, message)
+        send_mail(
+            subject, message, '',[email], fail_silently=False
+        )
+        print(message)
+        messages.success(self.request, ('Please confirm your email to complete the registration process'))
+            
+            
+
+        return HttpResponse("Registration Email with Password Sent!!")
+    
 

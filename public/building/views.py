@@ -40,10 +40,5 @@ class PasswordChange(TemplateView):
 def index(request):
     return render(request, template_name="building/index.html")
 
-class FormWizardView(SessionWizardView):
-    template_name = "../templates/landing.html"
-    form_list = [RegistrationForm, TenantSetupForm]
-    def done(self, form_list, **kwargs):
-        return HttpResponse("Registration Email with Password Sent!!")
-    
+
     

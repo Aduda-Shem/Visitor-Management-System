@@ -3,7 +3,7 @@ from django.urls import include, path
 from django.views.generic import TemplateView 
 from . import views
 # from vms.company.views import add_company
-from public.views import SignupView, TenantSetupView, ActivateAccount
+from public.views import SignupView, TenantSetupView, ActivateAccount,  FormWizardView
 from public.building import views
 
 urlpatterns = [
@@ -12,6 +12,8 @@ urlpatterns = [
     path('activate/<uidb64>/<token>/', ActivateAccount.as_view(), name='activate'),
 
     path("building_register", TenantSetupView.as_view(), name='building-register'),
+    path("register", FormWizardView.as_view(), name='FormWizardView'), 
+
     path('add-company', views.addcompany, name='add-company'),
     path('add-security', views.addsecurity, name='add-security'),
     path('vehicles', views.CarView.as_view(), name='vehicles'),
@@ -21,5 +23,4 @@ urlpatterns = [
     path('companies', views.Company.as_view(), name='company'),
     path('changepassword', views.PasswordChange.as_view(), name='pass_change'),
     path('index', views.index, name='index'),
-    path('register', views.FormWizardView.as_view(), name='FormWizardView'), 
 ]
