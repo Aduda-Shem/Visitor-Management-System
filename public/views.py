@@ -7,7 +7,6 @@ from django.db import connection
 from django.db.transaction import atomic
 from django.urls import reverse, reverse_lazy
 from django.contrib.postgres.search import SearchVector
-
 from django.conf import settings
 from django.contrib.auth import get_user_model, login
 from django.core import validators
@@ -20,14 +19,13 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django_tenants.utils import get_tenant_model
+from django.core.mail import send_mail
 
 from tenant_schemas.utils import tenant_context, schema_context
 from tenant_users.tenants.tasks import provision_tenant
-# from tenant_schemas.utils import tenant_context
+from tenant_schemas.utils import tenant_context
+
 from formtools.wizard.views import SessionWizardView
-
-from django.core.mail import send_mail
-
 
 from public.users.models import TenantUser
 from public.building.models import Building, Domain
@@ -144,7 +142,6 @@ class TenantSetupView(View):
             print(instance)
 
             domain=Domain()
-            domain.name=str(instance.name)
             domain.domain=f"{instance.name}.localhost"
             
 
@@ -176,18 +173,39 @@ class FormWizardView(SessionWizardView):
         building_form=form_list[1]
         user=user_form.save()
         print(user.id)
+
         slug=building_form.cleaned_data['slug']
-        building_form.owner_id=user.id
-        building_form.schema_name=slug
-        b=building_form.save()
+        building=Building()
+
+        building.name=building_form.cleaned_data['name']
+        building.email=building_form.cleaned_data['email']
+        building.nature_of_business=building_form.cleaned_data['nature_of_business']
+        building.website=building_form.cleaned_data['slug']
+        building.physical_address=building_form.cleaned_data['physical_address']
+        building.telephone=building_form.cleaned_data['telephone']
+
+        building.owner=user
+        building.schema_name=slug
+        building.save()
+
+        domain=Domain()
+        domain.domain=f"{slug}.localhost"
+        
+
+        # tenant = tenant_context(domain_url=domain, schema_name=str(instance.building_name), name=instance.building_name)
+        # tenant.save()
+
+        domain.tenant=building
+        domain.save()
+
         email=user_form.cleaned_data['email']
-        subdomain=slug
         subject = 'Activate your Account'
         message = render_to_string('email/account_activation_email.html',{
             'user': user_form,
-            'domain': subdomain,
-            'uid': urlsafe_base64_encode(force_bytes(user_form.pk)),
-            'token': account_activation_token.make_token(user_form),
+            'domain': f"{domain.domain}/login",
+            'password':user.password,
+            'uid': urlsafe_base64_encode(force_bytes(user.id)),
+            'token': account_activation_token.make_token(user),
         })
 
         # user.email_user(subject, message)

@@ -20,7 +20,6 @@ class RegistrationForm(forms.ModelForm):
     email = forms.EmailField()
     full_name = forms.CharField(max_length=100)
     phone_number = forms.CharField()
-    national_id = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput, max_length=MAX_PASSWORD_LENGTH)
 
 
