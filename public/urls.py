@@ -8,11 +8,11 @@ from public.building import views
 
 urlpatterns = [
     path("", views.DashboardView.as_view(), name='index'),
-    path("signup", SignupView.as_view(), name="signup"),
+    # path("signup", SignupView.as_view(), name="signup"),
     path('activate/<uidb64>/<token>/', ActivateAccount.as_view(), name='activate'),
 
     path("building_register", TenantSetupView.as_view(), name='building-register'),
-    path("register", FormWizardView.as_view(), name='FormWizardView'), 
+    path("register", FormWizardView.as_view(), name='register'), 
 
     path('add-company', views.addcompany, name='add-company'),
     path('add-security', views.addsecurity, name='add-security'),
