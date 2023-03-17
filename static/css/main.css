@@ -5927,3 +5927,20 @@ label {
     margin-bottom: 0.5rem;
   }
   
+
+  /* wizard form css */
+  .form-control::-webkit-input-placeholder {
+    color: transparent;
+}
+
+.form-control::-moz-placeholder {
+    color: transparent;
+}
+
+.form-control:-ms-input-placeholder {
+    color: transparent;
+}
+
+.form-control:-moz-placeholder {
+    color: transparent;
+}

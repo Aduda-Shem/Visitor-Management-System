@@ -1,41 +1,114 @@
 {% load static %}
-{%load crispy_forms_tags %}
-
-
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<meta charset="utf-8">
-		<title>Netbot - VMS</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="author" content="colorlib.com">
-
-		<!-- MATERIAL DESIGN ICONIC FONT -->
-		<link rel="stylesheet" href="{%static 'wizard/fonts/material-design-iconic-font/css/material-design-iconic-font.css'%}">
-
-		<!-- STYLE CSS -->
-        <link rel="stylesheet" href="{%static 'wizard/css/main.css'%}">
+		<meta charset="UTF-8">
+		<title>{% block title %}{% endblock %}</title>
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css" media="screen" />
+		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css" media="screen" />
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% block styles %}{% endblock %}
+		{% block extra_head %}{% endblock %}
 	</head>
+<body>
+	<header>
+		{% block header %}
+		<nav>{% load static %}
+			{%load crispy_forms_tags %}
+			
+			
+			
+			<!DOCTYPE html>
+			<html>
+				<head>
+					<meta charset="utf-8">
+					<title>Netbot - VMS</title>
+					<meta name="viewport" content="width=device-width, initial-scale=1.0">
+					<meta name="author" content="colorlib.com">
+			
+					<!-- MATERIAL DESIGN ICONIC FONT -->
+					<link rel="stylesheet" href="{%static 'wizard/fonts/material-design-iconic-font/css/material-design-iconic-font.css'%}">
+			
+					<!-- STYLE CSS -->
+					<link rel="stylesheet" href="{%static 'wizard/css/main.css'%}">
+				</head>
+			
+				<body>
+					<div class="wrapper">
+						<div class="image{% load static %}
+						{%load crispy_forms_tags %}
+						
+						
+						
+						<!DOCTYPE html>
+						<html>
+							<head>
+								<meta charset="utf-8">
+								<title>Netbot - VMS</title>
+								<meta name="viewport" content="width=device-width, initial-scale=1.0">
+								<meta name="author" content="colorlib.com">
+						
+								<!-- MATERIAL DESIGN ICONIC FONT -->
+								<link rel="stylesheet" href="{%static 'wizard/fonts/material-design-iconic-font/css/material-design-iconic-font.css'%}">
+						
+								<!-- STYLE CSS -->
+								<link rel="stylesheet" href="{%static 'wizard/css/main.css'%}">
+							</head>
+						
+							<body>
+								<div class="wrapper">
+									<div class="image-holder">
+										<div class="col-12">
+											{%block content%}
+											{%endblock%}
+										</div>
+						
+										<img src="{%static 'wizard/images/form-wizard.png'%}" alt="">
+									</div>
+							   
+						
+								<script src="{%static 'wizard/js/jquery-3.3.1.min.js'%}"></script>
+								
+								<!-- JQUERY STEP -->
+								<script src="{%static 'wizard/js/jquery.steps.js'%}"></script>
+						
+								<script src="{%static 'wizard/js/main.js'%}"></script>
+						<!-- Template created and distributed by Colorlib -->
+						</body>
+						</html>-holder">
+							<div class="col-12">
+								{%block content%}
+								{%endblock%}
+							</div>
+			
+							<img src="{%static 'wizard/images/form-wizard.png'%}" alt="">
+						</div>
+				   
+			
+					<script src="{%static 'wizard/js/jquery-3.3.1.min.js'%}"></script>
+					
+					<!-- JQUERY STEP -->
+					<script src="{%static 'wizard/js/jquery.steps.js'%}"></script>
+			
+					<script src="{%static 'wizard/js/main.js'%}"></script>
+			<!-- Template created and distributed by Colorlib -->
+			</body>
+			</html>
+			<a href="{% url 'index' %}">Index</a>
+		</nav>
+		{% endblock %}
+	</header>
 
-	<body>
-		<div class="wrapper">
-			<div class="image-holder">
-                <div class="col-12">
-                    {%block content%}
-                    {%endblock%}
-                </div>
+	<main>
+		{% block content %} {% endblock %}
+	</main>
 
-				<img src="{%static 'wizard/images/form-wizard.png'%}" alt="">
-			</div>
-       
+	<footer>
+		{% block footer %}
+			<div class="rside">&copy; Copyright 2022, <a href="#">cdchangers.org</a><br /></div>
+		{% endblock %}
+	</footer>
 
-		<script src="{%static 'wizard/js/jquery-3.3.1.min.js'%}"></script>
-		
-		<!-- JQUERY STEP -->
-		<script src="{%static 'wizard/js/jquery.steps.js'%}"></script>
-
-		<script src="{%static 'wizard/js/main.js'%}"></script>
-<!-- Template created and distributed by Colorlib -->
+	{% block scripts_after %}{% endblock %}
 </body>
 </html>
