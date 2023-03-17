@@ -1,51 +1,45 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render, redirect
 from django.test import Client
 from django.views import View
+from django.views.generic import TemplateView, View, UpdateView
 from django.db import connection
+from django.db.transaction import atomic
+from django.urls import reverse, reverse_lazy
 from django.contrib.postgres.search import SearchVector
-from tenant_schemas.utils import tenant_context, schema_context
-from public.users.models import TenantUser
-from formtools.wizard.views import SessionWizardView
-
-from public.building.models import Building, Domain
-# from tenant_schemas.utils import tenant_context
-
-from django_tenants.utils import get_tenant_model
-
-
-
-
-import urllib.parse
 
 from django.conf import settings
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, login
 from django.core import validators
 from django.core.exceptions import ValidationError
 from django.db import transaction
 from django.db.models import Q
-from django.db.transaction import atomic
-from django.shortcuts import redirect, render
-from django.urls import reverse
-from django.views import View
+from django.contrib import messages
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.template.loader import render_to_string
 from django_tenants.utils import get_tenant_model
+
+from tenant_schemas.utils import tenant_context, schema_context
 from tenant_users.tenants.tasks import provision_tenant
-from public.core.utils import send_confirm_registration_email
+# from tenant_schemas.utils import tenant_context
 
-from public.forms import RegistrationForm,TenantSetupForm
+from django.core.mail import send_mail
+
+
 from public.users.models import TenantUser
-from django.views.generic import TemplateView
+from public.building.models import Building, Domain
+from public.core.utils import send_confirm_registration_email
+from public.forms import RegistrationForm,TenantSetupForm
+from public.tokens import account_activation_token
 
+import urllib.parse
+
+# Create here
 UserProfile = get_user_model()
 
-
-# class BuildingRegisterView(TemplateView):
-#     form = TenantSetupForm
-#     template_name = "users/building-register.html"
-
-
 class SignupView(View):
-
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.form = None
@@ -72,10 +66,47 @@ class SignupView(View):
             user = self.form.save(commit=False)
             user.set_password(password)
             user.save()
-            print(user.save())
-            # send_confirm_registration_email(user, )
-            return redirect(reverse("building-register"))
+            
+            current_site = get_current_site(request)
+            subject = 'Activate your Account'
+            message = render_to_string('email/account_activation_email.html',{
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
+            })
+
+            # user.email_user(subject, message)
+            send_mail(
+                subject, message, '',[user.email], fail_silently=False
+            )
+            messages.success(request, ('Please confirm your email to complete the registration process'))
+            
+            return HttpResponse('Succcess!!!')    
+            # return redirect(reverse("building-register"))        
         return self.render(request)
+
+
+class ActivateAccount(View):
+    def get(self, request, uidb64, token, *args, **kwargs):
+        try:
+            uid = force_text(urlsafe_base64_decode(uidb64))
+            user = TenantUser.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, TenantUser.DoesNotExist):
+            user = None
+
+        if user is not None and account_activation_token.check_token(user, token):
+            user.is_active = True
+            user.profile.email_confirmed = True
+            user.save()
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            messages.success(request, ('Your account has been confirmed.'))
+            return HttpResponse('Done!!!')
+            # return redirect('home')
+        else:
+            messages.warning(request, ('The confirmation link was invalid, possibly because it has already been used.'))
+            return HttpResponse('Unsuccessful :(')
+            # return redirect('home')
 
 class TenantSetupView(View):
 
