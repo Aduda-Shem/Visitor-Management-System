@@ -7,7 +7,6 @@ from django.db import connection
 from django.db.transaction import atomic
 from django.urls import reverse, reverse_lazy
 from django.contrib.postgres.search import SearchVector
-
 from django.conf import settings
 from django.contrib.auth import get_user_model, login
 from django.core import validators
@@ -20,14 +19,13 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django_tenants.utils import get_tenant_model
+from django.core.mail import send_mail
 
 from tenant_schemas.utils import tenant_context, schema_context
 from tenant_users.tenants.tasks import provision_tenant
-# from tenant_schemas.utils import tenant_context
+from tenant_schemas.utils import tenant_context
+
 from formtools.wizard.views import SessionWizardView
-
-from django.core.mail import send_mail
-
 
 from public.users.models import TenantUser
 from public.building.models import Building, Domain
