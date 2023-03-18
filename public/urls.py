@@ -7,7 +7,6 @@ from public.views import SignupView, TenantSetupView, ActivateAccount,  FormWiza
 from public.building import views
 
 urlpatterns = [
-    path("", views.DashboardView.as_view(), name='index'),
     # path("signup", SignupView.as_view(), name="signup"),
     path('activate/<uidb64>/<token>/', ActivateAccount.as_view(), name='activate'),
 
@@ -22,5 +21,5 @@ urlpatterns = [
     path('security', views.Security.as_view(), name='security'),
     path('companies', views.Company.as_view(), name='company'),
     path('changepassword', views.PasswordChange.as_view(), name='pass_change'),
-    path('index', views.index, name='index'),
+    path("", views.index, name='index'),
 ]

@@ -11,9 +11,6 @@ from formtools.wizard.views import SessionWizardView
 
 #our views go here
 
-class DashboardView(TemplateView):
-    template_name = "building/dashboard.html"
-
 class CarView(TemplateView):
     template_name = "building/vehicles.html"
 
