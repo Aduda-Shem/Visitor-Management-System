@@ -109,7 +109,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-SHOW_PUBLIC_IF_NO_TENANT_FOUND = False
+SHOW_PUBLIC_IF_NO_TENANT_FOUND = True
 # PUBLIC_SCHEMA_URLCONF = "devprojects.urls_public"
 ROOT_URLCONF = "devproject.urls"
 
