@@ -22,6 +22,8 @@ from django.template.loader import render_to_string
 from django_tenants.utils import get_tenant_model
 from django.core.mail import send_mail, EmailMessage
 
+from django.contrib.auth.models import User
+
 from tenant_schemas.utils import tenant_context, schema_context
 from tenant_users.tenants.tasks import provision_tenant
 # from tenant_schemas.utils import tenant_context
@@ -172,8 +174,16 @@ class FormWizardView(SessionWizardView):
         print(self.request, [form.cleaned_data for form in form_list])
         user_form=form_list[0]
         building_form=form_list[1]
-        user=user_form.save()
-        print(user.id)
+        user=TenantUser()
+        user.full_name=user_form.cleaned_data['full_name']
+        user.phone_number=user_form.cleaned_data['phone_number']
+        user.email=user_form.cleaned_data['email']
+        password=TenantUser.objects.make_random_password()
+        user.set_password(password)
+        user.save()
+
+
+        print(user, password)
 
         slug=building_form.cleaned_data['slug']
         building=Building()
@@ -200,12 +210,10 @@ class FormWizardView(SessionWizardView):
 
         email=user_form.cleaned_data['email']
         subject = 'Activate your Account'
-        message = render_to_string('email/confirm_registration.html',{
+        message = render_to_string('email/account_activation_email.html',{
             'user': user,
-            'domain': f"{domain.domain}:8000/login",
-            'password':user.password,
-            'uid': urlsafe_base64_encode(force_bytes(user.id)),
-            'token': account_activation_token.make_token(user),
+            'domain': f"{domain.domain}/login",
+            'password':password,
         })
 
         # user.email_user(subject, message)

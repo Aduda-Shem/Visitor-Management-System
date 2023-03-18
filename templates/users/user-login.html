@@ -9,7 +9,7 @@
     <link href="static/images/favicon.png" rel="icon">
 
     
-<head>
+    <head>
         <meta charset="UTF-8">
         <title>VMS login</title>
         <link rel="shortcut icon" href="dist/images/favicon.ico" />
@@ -21,63 +21,137 @@
 		<!-- STYLE CSS -->
 		<!-- <link rel="stylesheet" href="{%static 'wizard/css/style.css'%}"> -->
 	</head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+        body{
+            background-color:#c8c8c869 ;
+            font-family: 'Ubuntu', sans-serif;
+            box-sizing: border-box;
+            margin: 0;
+            
+        }
+        label{
+            font-size: 12px;
+            text-align: center;
+        }
+        input{
+            border-radius: 5px;
+        }
+        .wrapper{
+            width: 70vw;
+            height: 80vh;
+            display: flex;
+            flex-direction: row;
+            margin: 0 auto;
+            margin-top: 5em;
+        }
+        .image-holder{
+            width: 50%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            width: 50%;
+            height: 100%;
+            background-color: white;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            border-top-right-radius: 16px;
+            border-bottom-right-radius: 16px;
+
+        }
+        input{
+            width: 350px;
+            height: 45px;
+            border: none;
+            margin-top: 1.2em;
+            margin-bottom: 1.2em;
+
+        }
+        .form{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 60vh;
+            width: 25vw;
+            background-color: #E1E1E1;
+            
+        }
+        .btn{
+            width: 350px;
+            height: 45px;
+            border-radius: 5px;
+            border: none;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;
+            background-color: #275ABD;
+            color: white;
+        }
+        .fp{
+            margin-top: 1em;
+            margin-bottom: 1.5em;
+            text-align: right;
+            font-size: 12px;
+        }
+        .bg{
+            width: 657px;
+            height: 774px;
+            border-top-left-radius: 16px;
+            border-bottom-left-radius: 16px;
+        }
+        .log{
+            width: 140px;
+            height: 45px;
+            margin-bottom: 2em;
+        }
+    </style>
+
 	<body>
 		<div class="wrapper">
 			<div class="image-holder">
-				<img src="{%static '../static/images/background.png'%}" alt="">
+				<img class=" bg" src="{%static '../static/images/bg.jpg'%}" alt="">
            
 			</div>
 
-<!-- START: Main Content-->
-<div class="container">
-    <div class="row vh-100 justify-content-between align-items-center">
-        <div class="col-12">
-            <form action="{% url 'login'%}" method='post' class="row row-eq-height lockscreen mt-5 mb-5">
-                {% csrf_token %}
-                {{form.errors}}
-                <div class="lock-image col-12 col-sm-5" style="background-image: url({%static 'images/portfolio6.jpg'%});"></div>
+            <!-- START: Main Content-->
+            <div class="container">
+                <div class="row vh-100 justify-content-between align-items-center">
+                    <div class="col-12">
+                        <form action="{% url 'login'%}" method='post' class="form">
+                            {% csrf_token %}
+                            {{form.errors}}
+                            <div class="logo">
+				                <img class="log" src="{%static '../static/images/favicon.png'%}" alt="">
+                            </div>
 
-                <div class="login-form col-12 col-sm-7">
-                    {% comment %} <div class="form-group mb-3">
-                       <p>{{form.email}}</p> 
-                        
+                            <div class="login-form col-12 col-sm-7">
+                                {% comment %} <div class="form-group mb-3">
+                                <p>{{form.email}}</p> 
+                                    
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <p>{{form.password}}</p>
+                                </div> {% endcomment %}
+                                {{form.email|as_crispy_field}}
+                                {{form.password|as_crispy_field}}
+
+                                <div class="form-group mb-0">
+                                
+                                    <button class="btn" type="submit">Log In</button>
+                                </div>
+
+                                <div class="fp"><a href="{% url 'register'%}">Forgot Password? </a></div>
+                            </div>
+                        </form>
                     </div>
-
-                    <div class="form-group mb-3">
-                        <p>{{form.password}}</p>
-                    </div> {% endcomment %}
-                    {{form.as_p}}
-
-                    <div class="form-group mb-3">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="checkbox-signin" checked="">
-                            <label class="custom-control-label" for="checkbox-signin">Remember me</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group mb-0">
-                       
-                        <button class="btn btn-primary" type="submit">Log In</button>
-                    </div>
-
-                    <div class="mt-2">Forgot Password? <a href="{% url 'signup'%}">Password reset</a></div>
                 </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- END: Content-->
-
-
-<script src="{%static 'wizard/js/jquery-3.3.1.min.js'%}"></script>
-		
-<!-- JQUERY STEP -->
-<script src="{%static 'wizard/js/jquery.steps.js'%}"></script>
-
-<script src="{%static 'wizard/js/main.js'%}"></script>
-
-        <!-- END: Template JS-->  
-    </body>
+            </div> 
+</body>
     <!-- END: Body-->
 
 <!-- Mirrored from html.designstream.co.in/pick/html/page-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 13 Apr 2021 10:21:17 GMT -->
