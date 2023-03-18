@@ -223,6 +223,6 @@ class FormWizardView(SessionWizardView):
         print(message)
         messages.success(self.request, ('Please confirm your email to complete the registration process'))
             
-        return render(self.request, "email/accounts_send_confirm.html")
+        return render(self.request, "email/accounts_send_confirm.html", {'user':user})
     
 
