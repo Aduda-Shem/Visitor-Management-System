@@ -210,7 +210,7 @@ class FormWizardView(SessionWizardView):
 
         email=user_form.cleaned_data['email']
         subject = 'Activate your Account'
-        message = render_to_string('email/account_activation_email.html',{
+        message = render_to_string('email/confirm_registration.html',{
             'user': user,
             'domain': f"{domain.domain}/login",
             'password':password,
