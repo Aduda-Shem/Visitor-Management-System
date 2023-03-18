@@ -168,6 +168,7 @@ class TenantSetupView(View):
         return render(request, "users/building-register.html", {"form": form})
     
 class FormWizardView(SessionWizardView):
+    """View for user and tenant creation wizard"""
     template_name = "../templates/landing.html"
     form_list = [RegistrationForm, TenantSetupForm]
     def done(self, form_list, **kwargs):
