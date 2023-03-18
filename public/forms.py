@@ -33,8 +33,8 @@ class TenantSetupForm(forms.ModelForm):
     email = forms.EmailField(required=False)
     telephone = forms.CharField(required=False)
     nature_of_business = forms.ChoiceField(choices=BUILDING_CHOICES)
-    slug = forms.CharField(required=False)
+    subdomain = forms.CharField(required=False)
     physical_address = forms.CharField(required=False)
     class Meta:
         model = Building
-        fields = ['name', 'email', 'telephone', 'nature_of_business', 'slug','physical_address' ]
+        fields = ['name', 'email', 'telephone', 'nature_of_business', 'subdomain','physical_address' ]
