@@ -178,12 +178,12 @@ class FormWizardView(SessionWizardView):
         user.full_name=user_form.cleaned_data['full_name']
         user.phone_number=user_form.cleaned_data['phone_number']
         user.email=user_form.cleaned_data['email']
-        password=TenantUser.objects.make_random_password()
-        user.password=password
+        random_password = generated_password =TenantUser.objects.make_random_password()
+        user.set_password(random_password)
         user.save()
 
 
-        print(user, password)
+        print(user, random_password)
 
         slug=building_form.cleaned_data['slug']
         building=Building()
@@ -213,7 +213,7 @@ class FormWizardView(SessionWizardView):
         message = render_to_string('email/confirm_registration.html',{
             'user': user,
             'domain': f"{domain.domain}:8000/login",
-            'password':password,
+            'password':generated_password,
         })
 
         # user.email_user(subject, message)

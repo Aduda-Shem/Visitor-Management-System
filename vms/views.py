@@ -5,9 +5,7 @@ from django.contrib.auth import authenticate, login as auth_login
 
 # Create your views here.
 def login(request):
-    if request.method == 'GET':
-        return render(request, 'users/user-login.html', {'form': LoginForm()})
-    else:
+    if request.method == "POST":
         user = authenticate(request, email=request.POST['email'], password=request.POST['password'])
         print('user',user)
         if user is None:
@@ -15,4 +13,5 @@ def login(request):
         else:
             auth_login(request, user)
             return redirect('/')
-        
+    else:
+        return render(request, 'users/user-login.html', {'form': LoginForm()})
