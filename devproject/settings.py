@@ -56,6 +56,7 @@ SHARED_APPS = [
     'public.building',
     'public.users',
     'formtools',
+    'debug_toolbar',
    
 ]
 TENANT_USERS_DOMAIN="localhost"
@@ -70,7 +71,9 @@ TENANT_APPS = [
     'tenant_users.permissions',
 
     #our apps 
+    'vms',
     'vms.company',
+    'debug_toolbar',
 ]
 
 INSTALLED_APPS =  list (SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
@@ -99,6 +102,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django_tenants.middleware.main.TenantMainMiddleware",
 
     "django.middleware.security.SecurityMiddleware",
@@ -109,8 +113,10 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+#  Public urls
 SHOW_PUBLIC_IF_NO_TENANT_FOUND = True
-# PUBLIC_SCHEMA_URLCONF = "devprojects.urls_public"
+PUBLIC_SCHEMA_URLCONF = "devproject.urls_public"
 ROOT_URLCONF = "devproject.urls"
 
 TEMPLATES = [
