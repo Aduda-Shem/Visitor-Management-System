@@ -179,7 +179,7 @@ class FormWizardView(SessionWizardView):
         user.phone_number=user_form.cleaned_data['phone_number']
         user.email=user_form.cleaned_data['email']
         password=TenantUser.objects.make_random_password()
-        user.set_password(password)
+        user.password=password
         user.save()
 
 
