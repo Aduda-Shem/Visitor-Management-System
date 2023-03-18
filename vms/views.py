@@ -3,8 +3,6 @@ from .forms import TenantUserLoginForm as LoginForm
 from django.contrib.auth import authenticate, login as auth_login
 
 
-
-    
 # Create your views here.
 def login(request):
     if request.method == 'GET':
