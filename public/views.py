@@ -212,7 +212,7 @@ class FormWizardView(SessionWizardView):
         subject = 'Activate your Account'
         message = render_to_string('email/confirm_registration.html',{
             'user': user,
-            'domain': f"{domain.domain}/login",
+            'domain': f"{domain.domain}:8000/login",
             'password':password,
         })
 
